@@ -2,6 +2,25 @@ import { Request, Response } from "express";
 import httpStatus from "http-status";
 import { AuthenticatedRequest } from "@/middlewares";
 import tickteService from "@/services/tickte-service";
+import { number } from "joi";
+
+export async function postTicket (req: AuthenticatedRequest, res: Response){
+  const idUser = req.userId;
+  const userId = Number(idUser);
+  const {ticketTypeId} = req.body;
+
+
+  try{
+    const event = await tickteService.postTickets(userId, Number(ticketTypeId))
+    res.status(httpStatus.CREATED).send(event);
+  }catch(err){
+    console.log(err)
+    if(err.name === "NotFoundError"){
+      return res.sendStatus(httpStatus.NOT_FOUND)
+     }
+    return res.sendStatus(httpStatus.BAD_REQUEST)
+  }
+}
 
 export async function getTypesTicket( req: AuthenticatedRequest, res: Response) {
     try {

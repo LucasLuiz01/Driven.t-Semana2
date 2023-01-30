@@ -1,8 +1,7 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import httpStatus from "http-status";
 import { AuthenticatedRequest } from "@/middlewares";
 import tickteService from "@/services/tickte-service";
-import { number } from "joi";
 
 export async function postTicket (req: AuthenticatedRequest, res: Response){
   const idUser = req.userId;

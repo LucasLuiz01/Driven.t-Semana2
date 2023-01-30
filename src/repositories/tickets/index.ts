@@ -5,6 +5,8 @@ async function getTypesTicketRepository(): Promise<TicketType[]> {
     const ticket = await prisma.ticketType.findMany();
     return ticket;
 }
+
+
 async function userRegistrationExist(userId:number) {
     const ticket = await prisma.enrollment.findFirst({
         where:{

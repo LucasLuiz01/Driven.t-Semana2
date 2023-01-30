@@ -1,7 +1,7 @@
 import ticket from "@/repositories/tickets";
 import { TicketType } from "@prisma/client";
 import { notFoundError } from "@/errors";
-import { number } from "joi";
+
 async function getTypesTickets(): Promise<TicketType[]>{
 const ticketsget = await ticket.getTypesTicketRepository()
 return ticketsget
